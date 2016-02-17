@@ -7,6 +7,9 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :categories
+    resources :items do
+      get :image, on: :member
+    end
   end
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
