@@ -6,6 +6,10 @@ gem 'rails', '4.2.5.1'
 gem 'responders', '~> 2.0'
 gem 'mongoid', '~> 5.1.0'
 
+# Image attachment
+gem 'carrierwave'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
