@@ -2,13 +2,30 @@
 <html>
 <head>
   <title>Opendata</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body ng-app="OpenData" ng-cloak>
+  <div ng-controller="AppCtrl" layout="column" style="height:100%;" ng-cloak>
+    <section layout="row" flex>
+      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+        <md-toolbar class="md-theme-indigo">
+          <h1 class="md-toolbar-tools">Dataset</h1>
+        </md-toolbar>
+        <md-content flex>
+          <md-list>
+            <div ng-repeat="item in items" ng-include="'view/home/_treeview.html'"></div>
+          </md-list>
+        </md-content>
+      </md-sidenav>
+      <md-content flex>
+        <div ng-include="'view/home/_home.html'"></div>
+        <ui-view></ui-view>
+        <div flex></div>
+      </md-content>
+    </section>
+  </div>
 </body>
 </html>

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'application#angular'
 
   namespace :api do
     resources :categories
