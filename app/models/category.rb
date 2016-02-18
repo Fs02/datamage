@@ -2,15 +2,17 @@ class Category
   include Mongoid::Document
   field :name, type: String
   field :description, type: String
-  field :parent, type: Category
+  field :parent_slug, type: String
   field :slug, type: String
+  field :child_count, type: Integer
 
   scope :root, ->{ where(parent: nil) }
 
   index({ slug: 1 }, { unique: true })
-  index({ parent: 1 })
+  index({ parent_slug: 1 })
 
   before_save :update_slug
+  after_validation :update_parent
 
   private
     def update_slug
@@ -26,6 +28,14 @@ class Category
           end
         end
         self.slug = new_slug
+      end
+    end
+
+    def update_parent
+      if self.parent_slug_changed?
+        Rails.logger.info self.parent_slug_was
+        Category.find_by(slug: self.parent_slug).inc(child_count: 1)
+        Category.find_by(slug: self.parent_slug_was).inc(child_count: -1) if self.parent_slug_was.present?
       end
     end
 end

@@ -2,6 +2,7 @@ json.categories @categories do |category|
   json.id           category._id.to_s
   json.name         category.name
   json.description  category.description
-  json.parent       category.parent
+  json.child_count  category.child_count
+  json.parent_slug  category.parent_slug
   json.slug         category.slug
 end

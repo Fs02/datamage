@@ -1,37 +1,27 @@
-angular.module('OpenData', ['ngMaterial', 'ui.router', 'templates'])
-.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+angular.module('OpenData', ['ngMaterial', 'ngResource', 'ui.router', 'templates'])
+.factory("Category", function($resource) {
+  return $resource("/api/categories/:id.json", {}, {
+    query: { method: "GET", isArray: false }
+  });
+})
+.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, Category) {
   $scope.openLeftMenu = function() {
     $mdSidenav('left').toggle();
   }
 
-  var ids = 1;
-
-  function getId() {
-    return ids++;
-  }
-
-  function createItems(count) {
-    var i, id, items = [];
-    for (i = 0; i < count; i += 1) {
-      id = getId();
-      items.push({
-        id: id,
-        title: 'Item #' + id,
-        items: id % 4
-      });
-    }
-    return items;
-  }
-
-  $scope.items = createItems(6); // 6 штук хвати всем!
+  Category.query(function(data) {
+    $scope.items = data.categories;
+  });
 
   $scope.toggleItems = function(item) {
-    if (item.items) {
+    if (item.child_count) {
       if (Array.isArray(item.items)) {
         item.expanded = !item.expanded;
       } else {
         $timeout(function() {
-          item.items = createItems(Math.floor(Math.random(4)) + 3);
+          Category.query({parent_slug: item.slug }, function(data) {
+            item.items = data.categories;
+          });
           item.expanded = true;
         }, 500);
       }
