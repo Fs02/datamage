@@ -1,0 +1,36 @@
+<!-- https://github.com/champloo11/ngEasyImageCrop/blob/master/easyImageCrop/image-crop.html -->
+<img id="imageCropSource" ng-src="{{imgSrc}}">
+<div id="imageCropSelector">
+  <div id="third_grid">
+    <!-- Third's rule grid -->
+    <div id="vertical_1"></div>
+    <div id="vertical_2"></div>
+    <div id="horizontal_1"></div>
+    <div id="horizontal_2"></div>
+
+
+
+    <!-- These are the resizing points on the div. -->
+    <div id="resize_top_left"></div>
+    <div id="resize_top_middle"></div>
+    <div id="resize_top_right"></div>
+
+    <div id="resize_middle_left"></div>
+    <div id="resize_middle_right"></div>
+
+    <div id="resize_bottom_left"></div>
+    <div id="resize_bottom_middle"></div>
+    <div id="resize_bottom_right"></div>
+
+
+
+    <!-- The invisible bars that are used to resize the div -->
+    <div id="resize_top"></div>
+    <div id="resize_bottom"></div>
+    <div id="resize_right"></div>
+    <div id="resize_left"></div>
+
+  </div>
+</div>
+<div id="imageCropBlock"></div>
+<div id="cropToolLoading" ng-show="imgLoader"></div>

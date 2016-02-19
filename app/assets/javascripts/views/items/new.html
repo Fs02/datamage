@@ -1,6 +1,25 @@
 <div layout="column" layout-padding ng-cloak>
   <br/>
   <md-content class="autoScroll">
+    <div image-crop
+		    		img-src="image"
+		    		display-height="displayHeight"
+		    		display-width = "displayWidth"
+		    		scaled-height="scaledHeight"
+		    		scaled-width="scaledWidth"
+		    		scaled-top="scaledTop"
+		    		scaled-left="scaledLeft"
+		    		style="position:relative;">
+				</div>
+
+		{{"Original Width: " + scaledWidth+"px"}}<br />
+		{{"Original Height: " + scaledHeight+"px"}}<br />
+
+		{{"Display Width: " + displayWidth+"px"}}<br />
+		{{"Display Height: " + displayHeight+"px"}}<br />
+		{{"Original X: " + scaledLeft + "px"}}<br />
+		{{"Original Y: " + scaledTop + "px"}}<br />
+
     <img ng-src="{{image}}" flex="100" alt="Image preview...">
     <br/>
     <upload-file fileread="image"></upload-file>
