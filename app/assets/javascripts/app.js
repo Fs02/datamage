@@ -26,6 +26,7 @@ angular.module('OpenData', ['ngMaterial', 'ngResource', 'ui.router', 'templates'
         $timeout(function() {
           Category.query({parent_slug: category.slug }, function(data) {
             category.categories = data.categories;
+            category.depth = 1;
           });
           category.expanded = true;
         }, 500);

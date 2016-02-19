@@ -1,10 +1,10 @@
 <md-list-item class="secondary-button-padding" ng-click="console.log('a')">
-  <p>{{ category.name }}</p>
+  <p style="margin-left: {{ category.level}}em">{{ category.name }}</p>
   <md-icon class="material-icons" ng-if="category.child_count" ng-click="togglecategories(category)">
     <i class="material-icons">{{ category.expanded ? 'expand_less' : 'expand_more' }}</i>
   </md-icon>
 </md-list-item>
-<md-list flex ng-if="category.child_count" ng-show="category.expanded" style="padding-left: 0.6em">
+<md-list ng-if="category.child_count" ng-show="category.expanded" style="padding: 0">
   <div ng-repeat="category in category.categories" ng-include="'view/home/_treeview.html'"></div>
 </md-list>
 </script>

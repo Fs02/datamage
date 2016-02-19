@@ -5,6 +5,7 @@ class Category
   field :parent_slug, type: String
   field :slug, type: String
   field :child_count, type: Integer
+  field :level, type: Integer, default: 0
 
   scope :root, ->{ where(parent: nil) }
 
@@ -34,8 +35,10 @@ class Category
     def update_parent
       if self.parent_slug_changed?
         Rails.logger.info self.parent_slug_was
-        Category.find_by(slug: self.parent_slug).inc(child_count: 1)
         Category.find_by(slug: self.parent_slug_was).inc(child_count: -1) if self.parent_slug_was.present?
+        parent = Category.find_by(slug: self.parent_slug)
+        parent.inc(child_count: 1)
+        self.level = parent.level + 1
       end
     end
 end
