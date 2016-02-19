@@ -16,12 +16,12 @@
         </md-toolbar>
         <md-content flex>
           <md-list>
-            <div ng-repeat="item in items" ng-include="'view/home/_treeview.html'"></div>
+            <div ng-repeat="category in categories" ng-include="'view/home/_treeview.html'"></div>
           </md-list>
         </md-content>
       </md-sidenav>
       <md-content flex>
-        <div ng-include="'view/home/_home.html'"></div>
+        <div ng-include="'view/home/_gallery.html'"></div>
         <ui-view></ui-view>
         <div flex></div>
       </md-content>

@@ -4,27 +4,37 @@ angular.module('OpenData', ['ngMaterial', 'ngResource', 'ui.router', 'templates'
     query: { method: "GET", isArray: false }
   });
 })
-.controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, Category) {
+.factory("Item", function($resource) {
+  return $resource("/api/items/:id.json", {}, {
+    query: { method: "GET", isArray: false }
+  });
+})
+.controller('AppCtrl', function ($scope, $timeout, $log, Category) {
   $scope.openLeftMenu = function() {
     $mdSidenav('left').toggle();
   }
 
   Category.query(function(data) {
-    $scope.items = data.categories;
+    $scope.categories = data.categories;
   });
 
-  $scope.toggleItems = function(item) {
-    if (item.child_count) {
-      if (Array.isArray(item.items)) {
-        item.expanded = !item.expanded;
+  $scope.togglecategories = function(category) {
+    if (category.child_count) {
+      if (Array.isArray(category.categories)) {
+        category.expanded = !category.expanded;
       } else {
         $timeout(function() {
-          Category.query({parent_slug: item.slug }, function(data) {
-            item.items = data.categories;
+          Category.query({parent_slug: category.slug }, function(data) {
+            category.categories = data.categories;
           });
-          item.expanded = true;
+          category.expanded = true;
         }, 500);
       }
     }
   };
+})
+.controller('GalleryCtrl', function ($scope, $log, Item) {
+    Item.query(function(data) {
+      $scope.items = data.items;
+    });
 });
