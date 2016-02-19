@@ -7,25 +7,34 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
-<body ng-app="OpenData" ng-cloak>
-  <div ng-controller="AppCtrl" layout="column" style="height:100%;" ng-cloak>
-    <section layout="row" flex>
-      <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
-        <md-toolbar class="md-theme-indigo">
-          <h1 class="md-toolbar-tools">Dataset</h1>
-        </md-toolbar>
-        <md-content flex>
-          <md-list>
-            <div ng-repeat="category in categories" ng-include="'view/home/_treeview.html'"></div>
-          </md-list>
-        </md-content>
-      </md-sidenav>
-      <md-content flex>
-        <div ng-include="'view/home/_gallery.html'"></div>
-        <ui-view></ui-view>
-        <div flex></div>
-      </md-content>
-    </section>
+<body ng-app="OpenData" ng-controller="AppCtrl" layout="row" ng-cloak>
+  <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
+    <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">Dataset</h1>
+    </md-toolbar>
+    <md-content flex>
+      <md-list>
+        <div ng-repeat="category in categories" ng-include="'view/home/_treeview.html'"></div>
+      </md-list>
+    </md-content>
+  </md-sidenav>
+  <div layout="column" flex>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>
+          <span>Handphone > Smartphone</span>
+        </h2>
+        <span flex></span>
+        <md-button class="md-button" aria-label="Upload">
+          Upload
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-content flex>
+      <div ng-include="'view/home/_gallery.html'"></div>
+      <ui-view></ui-view>
+      <div flex></div>
+    <md-content>
   </div>
 </body>
 </html>
