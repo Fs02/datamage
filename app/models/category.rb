@@ -4,8 +4,9 @@ class Category
   field :description, type: String
   field :parent_slug, type: String
   field :slug, type: String
-  field :child_count, type: Integer
+  field :child_count, type: Integer, default: 0
   field :level, type: Integer, default: 0
+  has_many :items
 
   scope :root, ->{ where(parent: nil) }
 
