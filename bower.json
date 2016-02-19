@@ -1,0 +1,30 @@
+{
+  "name": "opendata",
+  "authors": [
+    "Fs02 <surya.asriadie@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "overrides": {
+    "ng-flow": {
+      "main": "./dist/ng-flow-standalone.min.js"
+    }
+  },
+  "dependencies": {
+    "angular": "^1.5.0",
+    "angular-ui-router": "^0.2.18",
+    "angular-material": "^1.0.5",
+    "angular-resource": "^1.5.0",
+    "ng-flow": "~2"
+  }
+}

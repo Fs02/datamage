@@ -1,0 +1,26 @@
+<div layout="column" layout-padding ng-cloak>
+  <br/>
+  <md-content class="autoScroll">
+    <div flow-init="{singleFile:true}" flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]">
+      <div class="thumbnail" ng-show="!$flow.files.length">
+        <img src="http://www.placehold.it/200x150/EFEFEF/AAAAAA&text=no+image" />
+      </div>
+      <div class="thumbnail" ng-show="$flow.files.length">
+        <img flow-img="$flow.files[0]" />
+      </div>
+      <div>
+        <input type="file" flow-btn flow-directory />
+        <span class="md-raised md-primary" ng-show="!$flow.files.length" flow-btn>Select image</span>
+        <md-button class="md-raised" ng-show="$flow.files.length" flow-btn>Change</md-button>
+        <md-button class="md-raised md-warn" ng-show="$flow.files.length" ng-click="$flow.cancel()">Remove</md-button>
+      </div>
+      <p>
+        Only PNG,GIF,JPG,JEPG files allowed.
+      </p>
+    </div>
+    <md-input-container class="md-icon-float md-block">
+      <label>Caption</label>
+      <input ng-model="user.name" type="text">
+    </md-input-container>
+  </md-content>
+</div>

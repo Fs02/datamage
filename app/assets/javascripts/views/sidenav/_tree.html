@@ -1,9 +1,0 @@
-<md-list-item class="secondary-button-padding" ng-click="console.log('a')">
-  <p style="margin-left: {{ category.level}}em">{{ category.name }}</p>
-  <md-icon class="material-icons" ng-if="category.child_count" ng-click="togglecategories(category)">
-    <i class="material-icons">{{ category.expanded ? 'expand_less' : 'expand_more' }}</i>
-  </md-icon>
-</md-list-item>
-<md-list ng-if="category.child_count" ng-show="category.expanded" style="padding: 0">
-  <div ng-repeat="category in category.categories" ng-include="'views/sidenav/_tree.html'"></div>
-</md-list>
