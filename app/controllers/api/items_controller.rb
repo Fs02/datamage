@@ -16,7 +16,7 @@ module Api
       end
 
       def query_params
-        params.permit(:caption)
+        params.permit(:caption, :category_id)
       end
 
   end
