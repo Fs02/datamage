@@ -7,14 +7,14 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <%= csrf_meta_tags %>
 </head>
-<body ng-app="OpenData" ng-controller="AppCtrl" layout="row" ng-cloak>
+<body ng-app="OpenData" layout="row" ng-cloak>
   <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
     <md-toolbar class="md-theme-indigo">
       <h1 class="md-toolbar-tools">Dataset</h1>
     </md-toolbar>
-    <md-content flex>
+    <md-content ng-controller="SidenavCtrl" flex>
       <md-list>
-        <div ng-repeat="category in categories" ng-include="'view/home/_treeview.html'"></div>
+        <div ng-repeat="category in categories" ng-include="'views/sidenav/_tree.html'"></div>
       </md-list>
     </md-content>
   </md-sidenav>
@@ -31,7 +31,6 @@
       </div>
     </md-toolbar>
     <md-content flex>
-      <div ng-include="'view/home/_gallery.html'"></div>
       <ui-view></ui-view>
       <div flex></div>
     <md-content>
