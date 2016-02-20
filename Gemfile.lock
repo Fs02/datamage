@@ -81,6 +81,7 @@ GEM
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
     mime-types (2.99)
+    mini_magick (4.4.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     mongo (2.2.2)
@@ -172,6 +173,7 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   kaminari
+  mini_magick
   mongoid (~> 5.1.0)
   rails (= 4.2.5.1)
   responders (~> 2.0)

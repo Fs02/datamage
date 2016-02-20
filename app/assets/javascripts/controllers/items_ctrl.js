@@ -49,11 +49,12 @@ angular.module('OpenData')
         );
         $state.transitionTo('items_new', {}, {reload: true});
       }, function (resp) {
+        $mdDialog.hide(); // hide loading
         $mdToast.show(
           $mdToast.simple()
             .textContent('Error when saving image!')
             .action('OK')
-            .hideDelay(3000)
+            .hideDelay(0)
         );
       }, function (evt) {});
   }

@@ -4,7 +4,13 @@ module Api
     before_action :set_image, only: [:create, :update]
 
     def image
-      content = get_resource.image.read
+      content = nil
+      if params[:version] == 'thumb'
+        content = get_resource.image.thumb.read
+      else
+        content = get_resource.image.read
+      end
+
       if stale?(etag: content, last_modified: get_resource.updated_at.utc, public: true)
         send_data content, type: get_resource.image.file.content_type, disposition: "inline"
         expires_in 0, public: true

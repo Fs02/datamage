@@ -4,9 +4,16 @@ class ImageUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   storage :grid_fs
+
+  # Process files as they are uploaded:
+  process resize_to_fit: [1028, 1028]
+
+  version :thumb do
+    process resize_to_fit: [200,200]
+  end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   # def default_url
@@ -16,9 +23,6 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "/images/fallback/" + [version_name, "default.png"].compact.join('_')
   # end
 
-  # Process files as they are uploaded:
-  # process :scale => [200, 300]
-  #
   # def scale(width, height)
   #   # do something
   # end
