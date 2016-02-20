@@ -4,6 +4,5 @@ json.category do
   json.description  @category.description
   json.child_count  @category.child_count
   json.level        @category.level
-  json.parent_slug  @category.parent_slug
-  json.slug         @category.slug
+  json.parent_id    @category.parent_id
 end

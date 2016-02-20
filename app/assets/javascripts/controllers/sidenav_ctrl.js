@@ -4,7 +4,7 @@ angular.module('OpenData')
     $mdSidenav('left').toggle();
   }
 
-  Category.query(function(data) {
+  Category.query({level: 0}, function(data) {
     $scope.categories = data.categories;
   });
 
@@ -14,7 +14,7 @@ angular.module('OpenData')
         category.expanded = !category.expanded;
       } else {
         $timeout(function() {
-          Category.query({parent_slug: category.slug }, function(data) {
+          Category.query({parent_id: category.id }, function(data) {
             category.categories = data.categories;
             category.depth = 1;
           });
