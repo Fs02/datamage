@@ -1,2 +1,2 @@
-<md-option ng-show="!c.category.childs.length" value="{{c.category.id}}">{{c.category.path}} - {{c.category.name}}</md-option>
+<md-option ng-show="!c.category.childs.length" value="{{c.category.id}}">{{c.category.path}} > {{c.category.name}}</md-option>
 <div ng-if="c.category.childs" ng-repeat="c in c.category.childs" ng-include="'views/items/_category_tree.html'"></div>

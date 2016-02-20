@@ -10,7 +10,7 @@ module Api
           id: c.id.to_s,
           name: c.name,
           description: c.description,
-          path: (c.level > 0 ? (parent[:path].present? ? parent[:path] + " - " : '') + parent[:name] : ''),
+          path: (c.level > 0 ? (parent[:path].present? ? parent[:path] + " > " : '') + parent[:name] : ''),
           childs: {}
         }
         parent[:childs][cat[:id]] = cat if parent
