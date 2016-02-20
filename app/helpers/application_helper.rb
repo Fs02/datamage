@@ -1,12 +1,13 @@
 module ApplicationHelper
-  def tree(category)
+  def category_tree(category)
     category.map do |k, v|
       {
         category: {
           id: v[:id],
           name: v[:name],
           description: v[:description],
-          childs: (v[:childs].empty? ? [] : tree(v[:childs]))
+          path: v[:path],
+          childs: (v[:childs].empty? ? [] : category_tree(v[:childs]))
         }
       }
     end

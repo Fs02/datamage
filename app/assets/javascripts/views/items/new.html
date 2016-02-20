@@ -2,15 +2,16 @@
   <br/>
   <md-content class="autoScroll">
     <div image-crop
-		    		img-src="image"
-		    		display-height="displayHeight"
-		    		display-width = "displayWidth"
-		    		scaled-height="scaledHeight"
-		    		scaled-width="scaledWidth"
-		    		scaled-top="scaledTop"
-		    		scaled-left="scaledLeft"
-		    		style="position:relative;">
-				</div>
+  		img-src="'http://upload.wikimedia.org/wikipedia/commons/0/08/Mount_Everest_by_Kerem_Barut.jpg'"
+      img-load="'https://raw.githubusercontent.com/champloo11/ngEasyImageCrop/master/loaderBox.gif'"
+  		display-height="displayHeight"
+  		display-width = "displayWidth"
+  		scaled-height="scaledHeight"
+  		scaled-width="scaledWidth"
+  		scaled-top="scaledTop"
+  		scaled-left="scaledLeft"
+  		style="position:relative;">
+		</div>
 
 		{{"Original Width: " + scaledWidth+"px"}}<br />
 		{{"Original Height: " + scaledHeight+"px"}}<br />
@@ -20,14 +21,22 @@
 		{{"Original X: " + scaledLeft + "px"}}<br />
 		{{"Original Y: " + scaledTop + "px"}}<br />
 
-    <img ng-src="{{image}}" flex="100" alt="Image preview...">
     <br/>
     <upload-file fileread="image"></upload-file>
     <br/>
-    <button ng-click="uploadImage()">upload image</button>
     <md-input-container class="md-icon-float md-block">
       <label>Caption</label>
-      <input ng-model="user.name" type="text">
+      <input ng-model="item.caption" type="text">
     </md-input-container>
+    <md-input-container class="md-block">
+      <label>Category</label>
+      <md-select name="category" ng-model="item.category_id" required>
+        <div ng-repeat="c in categories" ng-include="'views/items/_category_tree.html'"></div>
+      </md-select>
+      <div class="errors" ng-messages="item.$error" ng-if="myForm.$dirty">
+        <div ng-message="required">Required</div>
+      </div>
+    </md-input-container>
+    <button ng-click="create()">upload image</button>
   </md-content>
 </div>

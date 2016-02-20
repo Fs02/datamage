@@ -1,1 +1,1 @@
-json.categories tree(@categories)
+json.categories category_tree(@categories)

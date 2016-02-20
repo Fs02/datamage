@@ -11,8 +11,8 @@ module Api
     end
 
     private
-      def category_params
-        params.require(:item).permit(:caption, :image)
+      def item_params
+        params.require(:item).permit(:caption, :image, :category_id)
       end
 
       def query_params
