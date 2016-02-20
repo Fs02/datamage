@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root 'application#angular'
 
   namespace :api do
-    resources :categories
+    resources :categories do
+      get :tree, on: :collection
+    end
     resources :items do
       get :image, on: :member
     end
