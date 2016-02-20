@@ -18,4 +18,6 @@
 //= require angular-animate
 //= require angular-material
 //= require angular-rails-templates
+//= require ng-img-crop-full-extended
+//= require ng-file-upload
 //= require_tree .

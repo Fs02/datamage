@@ -1,4 +1,4 @@
-angular.module('OpenData', ['ngMaterial', 'ngResource', 'ui.router', 'templates'])
+angular.module('OpenData', ['ngMaterial', 'ngResource', 'ngImgCrop', 'ngFileUpload', 'ui.router', 'templates'])
 .config([
 '$stateProvider',
 '$urlRouterProvider',

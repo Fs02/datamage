@@ -1,6 +1,7 @@
 module Api
   class ItemsController < Api::BaseController
     before_action :set_resource, only: [:destroy, :show, :update, :image]
+    before_action :set_image, only: [:create, :update]
 
     def image
       content = get_resource.image.read
@@ -11,6 +12,10 @@ module Api
     end
 
     private
+      def set_image
+        params[:item][:image] = params[:file]
+      end
+
       def item_params
         params.require(:item).permit(:caption, :image, :category_id)
       end

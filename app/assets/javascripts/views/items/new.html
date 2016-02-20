@@ -1,42 +1,29 @@
 <div layout="column" layout-padding ng-cloak>
   <br/>
   <md-content class="autoScroll">
-    <div image-crop
-  		img-src="'http://upload.wikimedia.org/wikipedia/commons/0/08/Mount_Everest_by_Kerem_Barut.jpg'"
-      img-load="'https://raw.githubusercontent.com/champloo11/ngEasyImageCrop/master/loaderBox.gif'"
-  		display-height="displayHeight"
-  		display-width = "displayWidth"
-  		scaled-height="scaledHeight"
-  		scaled-width="scaledWidth"
-  		scaled-top="scaledTop"
-  		scaled-left="scaledLeft"
-  		style="position:relative;">
-		</div>
-
-		{{"Original Width: " + scaledWidth+"px"}}<br />
-		{{"Original Height: " + scaledHeight+"px"}}<br />
-
-		{{"Display Width: " + displayWidth+"px"}}<br />
-		{{"Display Height: " + displayHeight+"px"}}<br />
-		{{"Original X: " + scaledLeft + "px"}}<br />
-		{{"Original Y: " + scaledTop + "px"}}<br />
-
-    <br/>
-    <upload-file fileread="image"></upload-file>
-    <br/>
-    <md-input-container class="md-icon-float md-block">
-      <label>Caption</label>
-      <input ng-model="item.caption" type="text">
-    </md-input-container>
-    <md-input-container class="md-block">
-      <label>Category</label>
-      <md-select name="category" ng-model="item.category_id" required>
-        <div ng-repeat="c in categories" ng-include="'views/items/_category_tree.html'"></div>
-      </md-select>
-      <div class="errors" ng-messages="item.$error" ng-if="myForm.$dirty">
-        <div ng-message="required">Required</div>
+    <div ngf-drop ng-model="item.image" ngf-pattern="image/*" class="cropArea" style="background: #E4E4E4; overflow: hidden;width:100%;height:500px; ">
+     <img-crop image="item.image  | ngfDataUrl" result-image="croppedDataUrl" area-type="rectangle" cropject="cropper" ng-init="croppedDataUrl=''">
+     </img-crop>
+    </div>
+    {{ cropper }}
+    <br>
+    <div layout="row">
+      <div layout="column" flex="70">
+        <md-button class="md-primary" ngf-select ng-model="item.image" name="item.image" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">Select Image
+        </md-button>
+        <md-input-container>
+          <label>Caption</label>
+          <input ng-model="item.caption" type="text">
+        </md-input-container>
+        <md-input-container>
+          <label>Category</label>
+          <md-select name="category" ng-model="item.category_id" required>
+            <div ng-repeat="c in categories" ng-include="'views/items/_category_tree.html'"></div>
+          </md-select>
+        </md-input-container>
+        <md-button class="md-button md-primary md-raised"  ng-click="create()">upload image</md-button>
       </div>
-    </md-input-container>
-    <button ng-click="create()">upload image</button>
+      <img ng-src="{{croppedDataUrl}}" flex="30"/>
+
   </md-content>
 </div>
