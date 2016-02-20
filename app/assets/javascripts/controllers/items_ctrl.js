@@ -6,7 +6,10 @@ angular.module('OpenData')
   'Item',
   'Category',
   'Upload',
-  function($scope, $stateParams, $http, Item, Category, Upload) {
+  '$state',
+  '$mdDialog',
+  '$mdToast',
+  function($scope, $stateParams, $http, Item, Category, Upload, $state, $mdDialog, $mdToast) {
     $scope.cropper = {
       cropWidth: 100,
       cropHeight: 100
@@ -17,29 +20,15 @@ angular.module('OpenData')
          $scope.categories = data.categories;
       });
 
-    $scope.uploadImage = function() {
-      var fd = new FormData();
-      var imgBlob = dataURItoBlob($scope.image);
-      fd.append('file', imgBlob);
-      $http.post(
-        'imageURL',
-        fd, {
-          transformRequest: angular.identity,
-          headers: {
-            'Content-Type': undefined
-          }
-        }
-      )
-      .success(function(response) {
-        console.log('success', response);
-      })
-      .error(function(response) {
-        console.log('error', response);
-      });
-    }
-
     $scope.item = new Item();
     $scope.create = function() {
+      // display loading
+      $mdDialog.show({
+        templateUrl: 'views/items/_loading.html',
+        parent: angular.element(document.body),
+        clickOutsideToClose:false
+      });
+
       Upload.upload({
         url: 'api/items.json',
         method: 'POST',
@@ -49,6 +38,23 @@ angular.module('OpenData')
         },
         file: $scope.item.image,
         fileFormDataName: 'item[image]'
-      });
+      })
+      .then(function (resp) {
+        $mdDialog.hide(); // hide loading
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Image saved!')
+            .hideDelay(3000)
+            .position('bottom right')
+        );
+        $state.transitionTo('items_new', {}, {reload: true});
+      }, function (resp) {
+        $mdToast.show(
+          $mdToast.simple()
+            .textContent('Error when saving image!')
+            .action('OK')
+            .hideDelay(3000)
+        );
+      }, function (evt) {});
   }
 }]);
