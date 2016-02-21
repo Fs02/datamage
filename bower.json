@@ -25,6 +25,10 @@
     "angular-ui-router": "^0.2.18",
     "angular-material": "^1.0.5",
     "angular-resource": "^1.5.0",
-    "ng-file-upload": "^12.0.1"
+    "ng-file-upload": "^12.0.1",
+    "ng-img-crop-full-extended": "git://github.com/Fs02/ngImgCropFullExtended#ba4c24b"
+  },
+  "resolutions": {
+    "ng-img-crop-full-extended": "ba4c24b"
   }
 }

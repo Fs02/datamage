@@ -29,7 +29,7 @@ module Api
       end
 
       def item_params
-        params.require(:item).permit(:caption, :image, :category_id)
+        params.require(:item).permit(:caption, :image, :category_id, :roi_top, :roi_left, :roi_width, :roi_height)
       end
 
       def query_params

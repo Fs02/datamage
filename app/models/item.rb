@@ -16,6 +16,10 @@ class Item
   mount_uploader :image, ImageUploader
 
   field :caption, type: String
+  field :roi_top, type: String, default: 0
+  field :roi_left, type: String, default: 0
+  field :roi_width, type: String, default: 0
+  field :roi_height, type: String, default: 0
   field :phash, type: String
   field :duplicates, type: Array, default: []
   belongs_to :category

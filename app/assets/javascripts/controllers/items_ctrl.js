@@ -11,6 +11,8 @@ angular.module('OpenData')
   '$mdToast',
   function($scope, $stateParams, $http, Item, Category, Upload, $state, $mdDialog, $mdToast) {
     $scope.cropper = {
+      cropTop: 0,
+      cropLeft: 0,
       cropWidth: 100,
       cropHeight: 100
     };
@@ -35,6 +37,10 @@ angular.module('OpenData')
         fields: {
           'item[caption]': $scope.item.caption,
           'item[category_id]': $scope.item.category_id,
+          'item[roi_top]' : $scope.cropper.cropTop,
+          'item[roi_left]' : $scope.cropper.cropLeft,
+          'item[roi_width]' : $scope.cropper.cropWidth,
+          'item[roi_height]' : $scope.cropper.cropHeight
         },
         file: $scope.item.image,
         fileFormDataName: 'item[image]'
