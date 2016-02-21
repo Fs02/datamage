@@ -47,7 +47,7 @@ class Item
     duplicates = []
     while (items = Item.limit(batch_size).skip(batch_iter * batch_size).pluck(:id, :phash).to_a).present?
       items.each do |i|
-        if not i[1].nil? and Phashion.hamming_distance(self.phash.to_i, i[1].to_i) < 15
+        if i[0].to_s != self.id.to_s and Phashion.hamming_distance(self.phash.to_i, i[1].to_i) < 15
           duplicates += [i[0]]
         end
       end
