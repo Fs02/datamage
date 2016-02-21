@@ -6,9 +6,16 @@ gem 'rails', '4.2.5.1'
 gem 'responders', '~> 2.0'
 gem 'mongoid', '~> 5.1.0'
 
+# Job processor
+gem 'delayed_job_mongoid'
+gem "daemons"
+
 # Image attachment
 gem 'carrierwave'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
+# Duplicates and near-duplicates detection
+gem 'phashion'
 
 # Frontend
 gem 'angular-rails-templates'
