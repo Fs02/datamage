@@ -1,12 +1,15 @@
 module Api
   class BaseController < ApplicationController
-    protect_from_forgery with: :null_session
+    protect_from_forgery
+    after_filter :set_csrf_cookie_for_ng
+
     before_action :set_resource, only: [:destroy, :show, :update]
     respond_to :json
 
     # POST /api/{plural_resource_name}
     def create
       set_resource(resource_class.new(resource_params))
+      Rails.logger.info get_resource
 
       if get_resource.save
         render :show, status: :created
@@ -94,5 +97,13 @@ module Api
         instance_variable_set("@#{resource_name}", resource)
       end
 
+      def set_csrf_cookie_for_ng
+        cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
+      end
+
+      protected
+        def verified_request?
+          super || valid_authenticity_token?(session, request.headers['X-XSRF-TOKEN'])
+        end
   end
 end
