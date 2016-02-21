@@ -19,7 +19,13 @@ module Api
 
     private
       def set_image
-        params[:item][:image] = params[:file]
+        if params[:item][:image_url]
+          uploader = ImageUploader.new
+          uploader.download! params[:item][:image_url]
+          uploader.store!
+        else
+          params[:item][:image] = params[:file]
+        end
       end
 
       def item_params

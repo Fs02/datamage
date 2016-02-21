@@ -1,7 +1,7 @@
 <div layout="column" layout-padding ng-cloak>
   <br/>
   <md-content class="autoScroll">
-    <div ngf-drop ng-model="item.image" ngf-pattern="image/*" class="cropArea" style="background: #E4E4E4; overflow: hidden;width:100%;height:500px; ">
+    <div ngf-drop ng-model="item.image" ngf-pattern="image/*" class="cropArea md-whiteframe-1dp" style="background: #E4E4E4; overflow: hidden;width:100%;height:500px; ">
      <img-crop image="item.image  | ngfDataUrl" result-image="croppedDataUrl" area-type="rectangle" cropject="cropper" ng-init="croppedDataUrl=''">
      </img-crop>
     </div>
@@ -9,12 +9,15 @@
     <br>
     <div layout="row">
       <div layout="column" flex="70">
+
         <md-button class="md-primary" ngf-select ng-model="item.image" name="item.image" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB">Select Image
         </md-button>
+
         <md-input-container>
           <label>Caption</label>
           <input ng-model="item.caption" type="text">
         </md-input-container>
+
         <md-input-container>
           <label>Category</label>
           <md-select name="category" ng-model="item.category_id" required>
@@ -22,8 +25,11 @@
           </md-select>
         </md-input-container>
         <md-button class="md-button md-primary md-raised"  ng-click="create()">upload image</md-button>
+
       </div>
-      <img ng-src="{{croppedDataUrl}}" flex="30"/>
+      <div layout="column"  class="md-whiteframe-1dp" flex="30">
+        <img ng-src="{{croppedDataUrl}}"/ width="100%" height="100%">
+      </div>
 
   </md-content>
 </div>
