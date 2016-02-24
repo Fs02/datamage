@@ -19,15 +19,21 @@
     </md-content>
   </md-sidenav>
   <div layout="column" flex>
-    <md-toolbar>
+    <md-toolbar ng-controller="AuthenticationsCtrl">
       <div class="md-toolbar-tools">
         <h2>
           <span>Handphone > Smartphone</span>
         </h2>
         <span flex></span>
-        <md-button href="#/items/new" class="md-button md-raised" aria-label="Upload">
+        <md-button href="#/items/new" class="md-button md-raised" aria-label="Upload" ng-if="isAuthenticated()">
           Upload
         </md-button>
+        <md-button ng-click="logout()" class="md-button md-raised md-warn" aria-label="Upload" ng-if="isAuthenticated()">
+          Logout
+        </md-button>
+        <a class="btn-auth btn-github large" ng-click="authenticate('github')" ng-if="!isAuthenticated()">
+          Sign in with <b>Github</b>
+        </a>
       </div>
     </md-toolbar>
     <md-content flex>

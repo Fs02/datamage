@@ -1,10 +1,18 @@
 source 'https://rubygems.org'
 
+gem 'dotenv-rails', :groups => [:development, :test]
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'
 gem 'responders', '~> 2.0'
 gem 'mongoid', '~> 5.1.0'
+
+# server
+gem 'thin'
+
+gem 'jwt'
+gem 'httpclient'
+gem 'bcrypt'
 
 # Job processor
 gem 'delayed_job_mongoid'

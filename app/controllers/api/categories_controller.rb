@@ -1,5 +1,6 @@
 module Api
-  class CategoriesController < Api::BaseController
+  class CategoriesController < Api::BaseResourceController
+    before_filter :set_current_user, :authenticate_user!, only: [:create, :update, :destroy]
     before_action :set_parent_params
 
     def tree
