@@ -25,6 +25,9 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 # Duplicates and near-duplicates detection
 gem 'phashion'
 
+# slack notifier
+gem 'slack-notifier'
+
 # Frontend
 gem 'angular-rails-templates'
 
